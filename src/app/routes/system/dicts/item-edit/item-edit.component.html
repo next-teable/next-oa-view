@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <div class="modal-title">字典项信息</div>
+</div>
+<form nz-form #f="ngForm" se-container="1" labelWidth="50">
+  <se label="标签">
+    <input type=" text" nz-input [(ngModel)]="record.label" name="label" required>
+  </se>
+  <se label="值">
+    <input type=" text" nz-input [(ngModel)]="record.value" name="value" required>
+  </se>
+  <se label="排序">
+    <input type=" text" nz-input [(ngModel)]="record.sort" name="sort" required>
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save(f.value)" [disabled]="!f.valid"
+    [nzLoading]="http.loading">保存</button>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <div class="modal-title">用户信息</div>
+</div>
+<nz-spin *ngIf="!i" class="modal-spin"></nz-spin>
+<div sv-container *ngIf="i" col="1" labelWidth="75">
+  <sv label="用户名">{{ i.username }}</sv>
+  <sv label="昵称">{{ i.nickName }}</sv>
+  <sv label="电子邮箱">{{ i.email }}</sv>
+  <sv label="手机">{{ i.mobile }}</sv>
+</div>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+</div>

@@ -1,0 +1,60 @@
+// 可以通过 https://ng-alain.github.io/ng-alain/ 获取主题参数代码
+// The theme paraments can be generated at https://ng-alain.github.io/ng-alain/
+
+
+// @primary-color: #e17d73;
+// @primary-color: #2E8B57;
+@primary-color: #347ec1;
+@font-size-base: 12px;
+@alain-default-header-hg: 46px;
+@alain-default-header-bg: #fff;
+@alain-default-aside-wd: 190px;
+// @alain-default-aside-bg: #eeeeee;
+// @alain-default-aside-nav-text-hover-color: #252a2f;
+// @alain-default-aside-nav-selected-text-color: #252a2f;
+@alain-default-content-padding: 7px;
+@preserve-sf-and-st-spaces: 10px;
+
+// @nz-table-rep-padding-vertical: 4px;
+@table-padding-vertical: 12px;
+
+// @card-head-padding: 1px;
+// @card-inner-head-padding: 1px;
+@card-padding-base: 13px;
+
+// @alain-default-aside-nav-item-height: 40px;
+@alain-default-aside-nav-padding-top-bottom: 8px;
+@alain-default-aside-nav-fs: 13px;
+@alain-default-aside-nav-img-wh: 13px;
+// @scrollbar-table-enabled: true;
+
+.alain-default__nav-item {
+  color: #252a2fe0;
+
+  &:hover {
+    color: #252a2fe0;
+    background-color: rgba(255, 255, 255, 0.2) !important;
+  }
+}
+
+:host {
+  ::ng-deep {
+    nz-table {
+      table {
+        table-layout: fixed;
+      }
+    }
+  }
+}
+
+.alain-default__header {
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.ant-input-number {
+  width: 100%;
+}
+
+.ant-calendar-picker {
+  width: 100%;
+}

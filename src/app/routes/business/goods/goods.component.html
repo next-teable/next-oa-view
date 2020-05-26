@@ -1,0 +1,26 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <button (click)="pushAll()" nz-button nzType="primary">推送全部商品</button>
+    <button (click)="pushAllCategory()" nz-button nzType="primary">推送全部类别</button>
+  </ng-template>
+</page-header>
+<nz-card>
+  <div sg-container="3" >
+    <sg>
+      <div class="item">&nbsp;</div>
+    </sg>
+    <sg>
+      <div class="item">
+        <input placeholder="搜索" nz-input [(ngModel)]="inputValue" (input)="onInput($event.target?.value)" [nzAutocomplete]="auto" />
+        <nz-autocomplete [nzDataSource]="options" nzBackfill #auto></nz-autocomplete>
+      </div>
+    </sg>
+    <sg>
+      <div class="item">&nbsp;</div>
+    </sg>
+  </div>
+</nz-card>
+<nz-card>
+  <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+  <st #st [data]="url" [columns]="columns"></st>
+</nz-card>

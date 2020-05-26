@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">供应商</div>
+</div>
+
+<form nz-form #f="ngForm" se-container gutter="24">
+  <se label="名称">
+    <input type="text" nz-input [(ngModel)]="record.name" name="name">
+  </se>
+  <se label="供应商编码">
+    <input type="text" nz-input [(ngModel)]="record.code" name="code">
+  </se>
+  <se label="联系人">
+    <input type="text" nz-input [(ngModel)]="record.contact" name="contact">
+  </se>
+  <se label="联系电话">
+    <input type="text" nz-input [(ngModel)]="record.phone" name="phone">
+  </se>
+  <se label="联系地址">
+    <input type="text" nz-input [(ngModel)]="record.address" name="address">
+  </se>
+  <se label="银行账号">
+    <input type="text" nz-input [(ngModel)]="record.bankAccount" name="bankAccount">
+  </se>
+  <se label="银行开户行">
+    <input type="text" nz-input [(ngModel)]="record.bankOpeningName" name="bankOpeningName">
+  </se>
+
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save(f.value)" [disabled]="!f.valid"
+    [nzLoading]="http.loading">保存</button>
+</div>

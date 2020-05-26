@@ -1,0 +1,25 @@
+<page-header>
+
+</page-header>
+
+<div nz-row nzGutter="16">
+  <div nz-col nzSpan="8">
+    <nz-card>
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input type="text" nz-input placeholder="查询" [(ngModel)]="searchValue" />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzSize="default" nzType="link" (click)="addProduct($event)">新增</button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <nz-tree #orgTree [nzSearchValue]="searchValue" nzDraggable nzBlockNode [nzExpandAll]="true" [nzData]="products"
+        (nzClick)="nzClick($event)" (nzSearchValueChange)="nzEvent($event)" (nzOnDrop)="nzEvent($event)"
+        [nzBeforeDrop]="beforeDrop" (nzOnDrop)="moveOrgs($event)"> </nz-tree>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="16">
+    <st #bindUserSt [data]="childProducts" [columns]="getUsersByRoleCols"></st>
+  </div>
+</div>

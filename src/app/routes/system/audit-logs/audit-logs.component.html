@@ -1,0 +1,33 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+    <!-- <button (click)="add()" nz-button nzType="primary">新建</button> -->
+  </ng-template>
+</page-header>
+<nz-card>
+  <form nz-form #f="ngForm" se-container="4" nzLayout="inline" firstVisual="false">
+    <se label="关键字">
+      <input type="text" nz-input [(ngModel)]="searchConditions.blurry" name="blurry">
+    </se>
+    <se label="类型">
+      <nz-radio-group name="logType" [(ngModel)]="searchConditions.logType">
+        <label nz-radio-button nzValue=""><span>全部</span></label>
+        <label nz-radio-button nzValue="INFO"><span>INFO</span></label>
+        <label nz-radio-button nzValue="ERROR"><span>ERROR</span></label>
+      </nz-radio-group>
+      <!-- <input type="text" nz-input [(ngModel)]="searchConditions.logType" name="logType"> -->
+    </se>
+    <se label="时间范围">
+      <nz-range-picker name="createdAt" [(ngModel)]="searchConditions.createdAt">
+      </nz-range-picker>
+      <!-- <input type="text" nz-input [(ngModel)]="searchConditions.createdAt" name="createdAt"> -->
+    </se>
+    <se>
+      <button nz-button type="submit" nzType="primary" (click)="query()">搜索</button>
+      <button nz-button type="reset" (click)="reset()">重置</button>
+      <button nz-button nzType="link" (click)="delAll('info')">删除所有INFO</button>
+      <button nz-button nzType="link" (click)="delAll('error')">删除所有ERROR</button>
+    </se>
+  </form>
+  <!-- <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf> -->
+  <st #st [data]="url" [columns]="columns"></st>
+</nz-card>

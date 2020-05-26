@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <div class="modal-title">选择供应商</div>
+</div>
+<div nz-row nzGutter="16">
+  <div nz-col>
+    <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
+    <st #st [data]="url" [columns]="columns" (change)="supplierSelect($event)"></st>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button nz-button type="submit" nzType="primary" (click)="save()" [nzLoading]="http.loading">确定</button>
+</div>

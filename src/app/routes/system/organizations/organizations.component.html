@@ -1,0 +1,40 @@
+<page-header>
+
+</page-header>
+
+<div nz-row nzGutter="16">
+  <div nz-col nzSpan="8">
+    <nz-card>
+      <nz-input-group [nzSuffix]="suffixIcon">
+        <input type="text" nz-input placeholder="查询" [(ngModel)]="searchValue" />
+      </nz-input-group>
+      <ng-template #suffixIcon>
+        <i nz-icon nzType="search"></i>
+      </ng-template>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzSize="default" nzType="link" (click)="addOrg($event)">新增</button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzSize="default" nzType="link" (click)="editOrg($event)">编辑</button>
+      <nz-divider nzType="vertical"></nz-divider>
+      <button nz-button nzSize="default" nzType="link" (click)="viewOrg()">查看</button>
+      <nz-tree #orgTree [nzSearchValue]="searchValue" nzDraggable nzBlockNode [nzExpandAll]="true"
+        [nzData]="orgTreeData" (nzClick)="nzClick($event)" (nzSearchValueChange)="nzEvent($event)"
+        (nzOnDrop)="nzEvent($event)" [nzBeforeDrop]="beforeDrop" (nzOnDrop)="moveOrgs($event)"> </nz-tree>
+    </nz-card>
+  </div>
+  <div nz-col nzSpan="16">
+    <nz-card>
+      <st #bindUserSt [header]="userToolbar" [data]="getUsersByOrgUrl" [req]="getUsersByOrgReq"
+        [columns]="getUsersByRoleCols" (change)="userSelect($event)"></st>
+      <ng-template #userToolbar>
+        <sf mode="search" nz-col [schema]="searchSchema" [button]="null">
+          <button (click)="bindUserSt.reset($event)" nz-button nzSize="default" nzType="primary">查询</button>
+          <button (click)="bindUserSt.reset($event)" nz-button nzSize="default">重置</button>
+          <button (click)="bindUsers()" nz-button nzSize="default" nzType="link">绑定人员</button>
+          <nz-divider nzType="vertical"></nz-divider>
+          <button (click)="unbindUsers()" nz-button nzSize="default" nzType="link">解绑人员</button>
+        </sf>
+      </ng-template>
+    </nz-card>
+  </div>
+</div>

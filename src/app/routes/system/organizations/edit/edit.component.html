@@ -1,0 +1,14 @@
+<div class="modal-header">
+  <div class="modal-title" *ngIf="parent.id">父组织机构：{{ parent.title }}</div>
+  <div class="modal-title" *ngIf="!parent.id">编辑</div>
+</div>
+<!-- <nz-spin *ngIf="!i" class="modal-spin"></nz-spin> -->
+
+<sf #sf mode="edit" [schema]="schema" [ui]="ui" [loading]="false" [formData]="record" button="none">
+
+  <div class="modal-footer">
+    <button nz-button type="button" (click)="close()">关闭</button>
+    <button nz-button type="submit" nzType="primary" (click)="save(sf.value)" [disabled]="!sf.valid"
+      [nzLoading]="http.loading">保存</button>
+  </div>
+</sf>

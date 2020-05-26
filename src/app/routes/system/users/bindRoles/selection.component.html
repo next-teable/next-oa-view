@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <div class="modal-title">选择角色</div>
+</div>
+<nz-transfer #roleTransfer [nzDataSource]="rolesData" [nzTitles]="['可选择角色', '已选择角色']" [nzShowSearch]="true"
+  [nzShowSelectAll]="false" [nzRenderList]="[renderList, null]">
+  <ng-template #renderList let-items let-direction="direction" let-stat="stat" let-disabled="disabled"
+    let-onItemSelectAll="onItemSelectAll" let-onItemSelect="onItemSelect">
+    <nz-table #t [nzData]="rolesData" [nzTotal]="rolesData.length" nzSize="small" [nzShowPagination]="false">
+      <thead>
+        <tr>
+          <th nzShowCheckbox [nzDisabled]="disabled" [nzChecked]="stat.checkAll" [nzIndeterminate]="stat.checkHalf"
+            (nzCheckedChange)="onItemSelectAll($event)"></th>
+          <th>角色名</th>
+          <th *ngIf="direction === 'left'">描述</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of t.data" (click)="onItemSelect(data)">
+          <td nzShowCheckbox [nzChecked]="data.checked" [nzDisabled]="disabled || data.disabled"
+            (nzCheckedChange)="onItemSelect(data)"></td>
+          <td>{{ data.name  }}</td>
+          <td *ngIf="direction === 'left'">
+            {{ data.remark }}
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-template>
+</nz-transfer>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()" [nzLoading]="http.loading">保存</button>
+</div>

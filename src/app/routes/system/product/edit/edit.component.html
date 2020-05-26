@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <div class="modal-title">产品信息</div>
+</div>
+<form nz-form #f="ngForm" se-container gutter="24">
+  <se label="父类名称">
+    {{record.parentName}}
+  </se>
+  <se label="名称">
+    <input type="text" nz-input [(ngModel)]="record.name" name="name" required>
+  </se>
+  <se label="编码">
+    <input type="text" nz-input [(ngModel)]="record.code" name="code" required>
+  </se>
+  <se label="类型">
+    <input type="text" nz-input [(ngModel)]="record.type" name="type">
+  </se>
+  <se label="型号">
+    <input type="text" nz-input [(ngModel)]="record.model" name="model">
+  </se>
+  <se label="单价">
+    <input type="text" nz-input [(ngModel)]="record.unitPrice" name="unitPrice">
+  </se>
+  <se label="重量">
+    <input type="text" nz-input [(ngModel)]="record.weight" name="weight">
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save(f.value)" [disabled]="!f.valid"
+    [nzLoading]="http.loading">保存</button>
+</div>

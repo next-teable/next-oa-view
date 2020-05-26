@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <div class="modal-title">客户信息</div>
+</div>
+<form nz-form #f="ngForm" se-container gutter="24">
+  <se label="类别名称" col="1">
+    <input type=" text" nz-input [(ngModel)]="record.nickName" name="nickName" required>
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save(f.value)" [disabled]="!f.valid"
+    [nzLoading]="http.loading">保存</button>
+</div>

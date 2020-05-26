@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <div class="modal-title">选择部门</div>
+</div>
+<div nz-row nzGutter="16">
+  <div nz-col>
+    <nz-input-group [nzSuffix]="suffixIcon">
+      <input type="text" nz-input placeholder="查询" [(ngModel)]="searchValue" />
+    </nz-input-group>
+    <ng-template #suffixIcon>
+      <i nz-icon nzType="search"></i>
+    </ng-template>
+    <nz-tree #orgTree [nzSearchValue]="searchValue" nzDraggable nzBlockNode [nzExpandAll]="true" [nzData]="orgTreeData"
+      (nzClick)="nzClick($event)" (nzSearchValueChange)="nzEvent($event)" (nzOnDrop)="nzEvent($event)"> </nz-tree>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button nz-button type="submit" nzType="primary" (click)="save()">确定</button>
+</div>

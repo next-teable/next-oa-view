@@ -1,0 +1,60 @@
+<div class="modal-header">
+  <div class="modal-title">客户信息</div>
+</div>
+<form nz-form #f="ngForm" se-container gutter="24">
+  <se label="客户类别">
+    {{record.parentCustomer.nickName}}
+  </se>
+  <se label="客户类型">
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="选择客户类型" [(ngModel)]="record.customerType" name='customerType'>
+      <nz-option nzValue="STATE" nzLabel="国家电网"></nz-option>
+      <nz-option nzValue="SOUTHERN" nzLabel="南方电网"></nz-option>
+      <nz-option nzValue="OTHERS" nzLabel="其他"></nz-option>
+    </nz-select>
+  </se>
+  <se label="客户名称">
+    <input type="text" nz-input [(ngModel)]="record.name" name="name" required>
+  </se>
+  <se label="客户简称">
+    <input type="text" nz-input [(ngModel)]="record.nickName" name="nickName" required>
+  </se>
+  <se label="公司电话">
+    <input type="text" nz-input [(ngModel)]="record.companyPhone" name="companyPhone">
+  </se>
+  <se label="联系人">
+    <input type="text" nz-input [(ngModel)]="record.contactName" name="contactName">
+  </se>
+  <se label="联系电话">
+    <input type="text" nz-input [(ngModel)]="record.contactPhone" name="contactPhone">
+  </se>
+  <se label="座机号码">
+    <input type="text" nz-input [(ngModel)]="record.telephone" name="telephone">
+  </se>
+  <se label="传真">
+    <input type="text" nz-input [(ngModel)]="record.faxNum" name="faxNum">
+  </se>
+  <se label="邮箱">
+    <input type="text" nz-input [(ngModel)]="record.mailAddress" name="mailAddress">
+  </se>
+  <se label="省">
+    <input type="text" nz-input [(ngModel)]="record.province" name="province">
+  </se>
+  <se label="市">
+    <input type="text" nz-input [(ngModel)]="record.city" name="city">
+  </se>
+  <se label="区">
+    <input type="text" nz-input [(ngModel)]="record.district" name="district">
+  </se>
+  <se label="详细地址" col="1">
+    <input type="text" nz-input [(ngModel)]="record.detailAddress" name="detailAddress">
+  </se>
+  <se label="备注" col=" 1">
+    <textarea nz-input rows="6" [(ngModel)]="record.description" name="description">
+    </textarea>
+  </se>
+</form>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save(f.value)" [disabled]="!f.valid"
+    [nzLoading]="http.loading">保存</button>
+</div>

@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <div class="modal-title">选择用户</div>
+</div>
+<nz-transfer #userTransfer [nzDataSource]="usersData.content" [nzTitles]="['可选择用户', '已选择用户']" [nzShowSearch]="true"
+  [nzShowSelectAll]="false" [nzRenderList]="[renderList, null]" (nzSelectChange)="select($event)"
+  (nzChange)="change($event)">
+  <ng-template #renderList let-items let-direction="direction" let-stat="stat" let-disabled="disabled"
+    let-onItemSelectAll="onItemSelectAll" let-onItemSelect="onItemSelect">
+    <nz-table #t [nzData]="usersData.content" [nzTotal]="usersData.totalElements" nzSize="small"
+      [nzFrontPagination]="false" [(nzPageIndex)]="pageIndex" [(nzPageSize)]="pageSize" nzSize="small"
+      (nzPageIndexChange)="searchData()" (nzPageSizeChange)="searchData()">
+      <thead>
+        <tr>
+          <th nzShowCheckbox [nzDisabled]="disabled" [nzChecked]="stat.checkAll" [nzIndeterminate]="stat.checkHalf"
+            (nzCheckedChange)="onItemSelectAll($event)"></th>
+          <th>用户名</th>
+          <th *ngIf="direction === 'left'">联系电话</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of t.data" (click)="onItemSelect(data)">
+          <td nzShowCheckbox [nzChecked]="data.checked" [nzDisabled]="disabled || data.disabled"
+            (nzCheckedChange)="onItemSelect(data)"></td>
+          <td>{{ data.username + '('+data.nickName+')' }}</td>
+          <td *ngIf="direction === 'left'">
+            <nz-tag>{{ data.mobile }}</nz-tag>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </ng-template>
+</nz-transfer>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+  <button nz-button type="submit" nzType="primary" (click)="save()" [nzLoading]="http.loading">保存</button>
+</div>

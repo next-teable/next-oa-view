@@ -1,0 +1,31 @@
+<page-header [action]="phActionTpl">
+  <ng-template #phActionTpl>
+  </ng-template>
+</page-header>
+
+
+
+<div sg-container="2" gutter="10">
+  <sg>
+    <nz-card>
+      <sf #dictQueryF mode="search" [schema]="dictSearchSchema" [button]="null">
+        <button (click)="dictSearch(dictQueryF.value)" nz-button nzSize="default" nzType="primary">查询</button>
+        <button (click)="dictQueryF.reset();resetDictSearch(dictQueryF.value)" nz-button nzSize="default">重置</button>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzSize="default" nzType="link" (click)="addDict()">新增</button>
+      </sf>
+      <st #dictSt [data]="dictUrl" [columns]="dictColumns" (change)="dictSelect($event)"></st>
+    </nz-card>
+  </sg>
+  <sg>
+    <nz-card>
+      <sf mode="search" [schema]="dictItemSearchSchema" [button]="null">
+        <button (click)="dictItemSt.reset($event)" nz-button nzSize="default" nzType="primary">查询</button>
+        <button (click)="dictItemSt.reset($event)" nz-button nzSize="default">重置</button>
+        <nz-divider nzType="vertical"></nz-divider>
+        <button nz-button nzSize="default" nzType="link" (click)="addDictItem()">新增</button>
+      </sf>
+      <st #dictItemSt [data]="dictItemUrl" [columns]="dictItemColumns" [req]="dictItemsReq"></st>
+    </nz-card>
+  </sg>
+</div>

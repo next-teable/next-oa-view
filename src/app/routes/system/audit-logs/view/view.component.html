@@ -1,0 +1,21 @@
+<div class="modal-header">
+  <div class="modal-title">查看审计详情</div>
+</div>
+<nz-spin *ngIf="!record" class="modal-spin"></nz-spin>
+<sv-container *ngIf="record" size="large" col="1" labelWidth="100">
+  <sv label="类型">{{ record.logType }}</sv>
+  <sv label="请求时间">{{ record.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</sv>
+  <sv label="请求用户">{{ record.username }}</sv>
+  <sv label="描述">{{ record.description }}</sv>
+  <sv label="IP">{{ record.requestIp }}</sv>
+  <sv label="耗时（毫秒">{{ record.time }}</sv>
+  <sv label="地址">{{ record.address }}</sv>
+  <sv label="method">{{ record.method }}</sv>
+  <sv label="browser">{{ record.browser }}</sv>
+  <sv label="params"><textarea readonly nz-input rows="6">{{ record.params }}</textarea></sv>
+  <sv *ngIf="record.logType === 'ERROR'" label="exception"><textarea readonly nz-input
+      rows="16">{{ record.exception }}</textarea></sv>
+</sv-container>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+</div>
