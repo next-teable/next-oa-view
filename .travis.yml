@@ -1,0 +1,35 @@
+language: bash
+dist: xenial
+
+sudo: required
+
+#notifications:
+#  webhooks: https://hook.bearychat.com/=bwBrp/travis/93d020f67c0a20049466b93a0211692c
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+    - dev
+    - image
+
+jobs:
+  include:
+    - stage: deploy
+      script:
+        - docker login --username "$DOCKER_USERNAME" --password "$DOCKER_PASSWORD"
+        - docker build -f docker/Dockerfile -t "$IMAGE_NAME" --rm=true .
+        - docker push "$IMAGE_NAME"
+        - docker logout
+    - stage: build
+      script:
+        - npm install
+        - npm run build
+
+stages:
+  - name: build
+    if: branch = dev OR branch = master
+  - name: deploy
+    if: branch = image

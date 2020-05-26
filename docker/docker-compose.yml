@@ -1,0 +1,46 @@
+version: '3.7'
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - volume_mongodb_data:/data/db
+      - volume_mongodb_config:/data/configdb
+
+  redis:
+    container_name: redis
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  nextoa-api:
+    container_name: nextoa-api
+    image: teable/nextoa-api
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      MONGODB_URI: "mongodb://mongodb:27017/nextoa"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+  nextoa-apidoc:
+    container_name: nextoa-apidoc
+    image: teable/nextoa-apidoc
+    ports:
+      - "8081:8080"
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      MONGODB_URI: "mongodb://mongodb:27017/nextoa-swagger"
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+
+volumes:
+  volume_mongodb_data:
+  volume_mongodb_config:
