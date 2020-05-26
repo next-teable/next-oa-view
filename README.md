@@ -37,3 +37,19 @@ image |  [![Travis Build Status](https://travis-ci.org/next-teable/next-oa-view.
 # Configuration
 
 ## Backend APIs Proxy
+
+> proxy.conf.json
+
+```
+{
+  "/nextoa-api": {
+    "target": "http://127.0.0.1:8080/",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/nextoa-api": ""
+    }
+  }
+}
+```
