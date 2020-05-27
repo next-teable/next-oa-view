@@ -10,7 +10,7 @@ ADD ./ /code/
 RUN cd /code && \
     npm install && \
     npm run build && \
-    test -f /code/dist/nextoa/index.html
+    test -f /code/dist/index.html
 
 # final stage
 FROM clouthinkin/nginx
@@ -23,7 +23,7 @@ ADD ./shared/etc/nginx/ /etc/nginx/
 
 COPY ./shared/scripts/docker-healthcheck.sh /
 COPY ./shared/scripts/docker-entrypoint.sh /
-COPY --from=builder /code/dist/nextoa/ /usr/share/nginx/html/
+COPY --from=builder /code/dist/ /usr/share/nginx/html/
 
 RUN chmod +x /*.sh
 
