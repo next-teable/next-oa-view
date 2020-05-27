@@ -19,10 +19,10 @@ LABEL maintainer="melthaw@gmai.com"
 
 RUN mkdir -p /usr/share/nginx/html
 
-ADD ./shared/etc/nginx/ /etc/nginx/
+ADD ./docker/etc/nginx/ /etc/nginx/
 
-COPY ./shared/scripts/docker-healthcheck.sh /
-COPY ./shared/scripts/docker-entrypoint.sh /
+COPY ./docker/scripts/docker-healthcheck.sh /
+COPY ./docker/scripts/docker-entrypoint.sh /
 COPY --from=builder /code/dist/ /usr/share/nginx/html/
 
 RUN chmod +x /*.sh
